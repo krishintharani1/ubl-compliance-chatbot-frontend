@@ -1,10 +1,19 @@
 {
   "routes": [
-    { "route": "/", "rewrite": "/login.html" }
+    {
+      "route": "/",
+      "rewrite": "/login.html"
+    }
   ],
   "navigationFallback": {
     "rewrite": "/login.html",
-    "exclude": ["/images/*.{png,jpg,gif}", "/css/*", "*.js", "*.css"]
+    "exclude": [
+      "/images/*.{png,jpg,gif}",
+      "/assets/*",
+      "/css/*",
+      "*.js",
+      "*.css"
+    ]
   },
   "mimeTypes": {
     ".json": "application/json"
