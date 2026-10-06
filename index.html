@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#005aa9">
+  <meta name="description" content="UBL compliance knowledge assistant">
+  <title>UBL Compliance Assistant</title>
+  <link rel="stylesheet" href="styles.css?v=6">
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script>requireSession();</script>
+</head>
+<body>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
+  <header class="topbar glass">
+    <a class="brand" href="index.html" aria-label="UBL Compliance Assistant home">
+      <span class="ubl-mark" aria-hidden="true"><b>U</b><b>B</b><b>L</b></span>
+      <span class="brand-copy"><strong>United Bank Limited</strong><small>Compliance Assistant</small></span>
+    </a>
+    <div class="topbar-right">
+      <span class="pilot"><i></i> Compliance knowledge base</span>
+      <button id="logout-button" class="logout-button" type="button" title="Log out">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section id="welcome" class="welcome">
+      <div class="welcome-icon glass" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M8 7.5h16v17H8zM11.5 11h9M11.5 15h9M11.5 19h5"/></svg>
+      </div>
+      <p class="kicker">UBL Compliance Knowledge</p>
+      <h1>How can I help?</h1>
+      <p>Ask a compliance question in your own words. I will review the indexed guidance and provide a structured, source-grounded response.</p>
+    </section>
+
+    <section id="conversation" class="conversation" aria-live="polite"></section>
+
+    <section id="error-panel" class="error-card glass" hidden role="alert">
+      <strong>Something went wrong</strong>
+      <p id="error-message"></p>
+    </section>
+
+    <div id="thinking" class="thinking" hidden aria-live="polite">
+      <span class="assistant-avatar">UBL</span>
+      <div class="thinking-bubble glass"><i></i><i></i><i></i><span>Reviewing relevant guidance</span></div>
+    </div>
+  </main>
+
+  <div class="composer-wrap">
+    <form id="question-form" class="composer glass">
+      <label class="sr-only" for="question">Ask a compliance question</label>
+      <textarea id="question" name="question" rows="1" maxlength="4000" required autofocus placeholder="Ask a compliance question..."></textarea>
+      <button id="ask-button" type="submit" aria-label="Send question">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-5.5 14-2.5-5.5z"/></svg>
+      </button>
+    </form>
+    <p class="composer-note">Verify material compliance decisions against the cited source and applicable UBL policy.</p>
+  </div>
+
+  <template id="user-message-template">
+    <article class="turn user-turn">
+      <div class="user-bubble"></div>
+      <span class="user-avatar" aria-hidden="true">You</span>
+    </article>
+  </template>
+
+  <template id="assistant-message-template">
+    <article class="turn assistant-turn">
+      <span class="assistant-avatar" aria-hidden="true">UBL</span>
+      <div class="assistant-content">
+        <div class="answer-topline">
+          <span class="answer-status"></span>
+          <button class="copy-button" type="button" aria-label="Copy complete answer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="11" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+        <div class="answer-body markdown-body"></div>
+        <div class="warning-list" hidden></div>
+        <section class="sources" hidden>
+          <button class="sources-toggle" type="button" aria-expanded="true">
+            <span><b class="source-count"></b> Sources</span><i aria-hidden="true"></i>
+          </button>
+          <div class="source-list"></div>
+        </section>
+      </div>
+    </article>
+  </template>
+
+  <script src="app.js?v=6" defer></script>
+</body>
+</html>
