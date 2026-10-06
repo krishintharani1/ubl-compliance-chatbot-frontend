@@ -36,6 +36,9 @@ async function submitLogin(event) {
       throw new Error(data.detail || "Sign-in failed. Please try again.");
     }
 
+    if (typeof data.access_token !== "string" || !data.access_token.trim()) {
+      throw new Error("The login service did not return an access token. Please try again.");
+    }
     setSession(data.access_token, data.email);
     window.location.replace("index.html");
   } catch (error) {
