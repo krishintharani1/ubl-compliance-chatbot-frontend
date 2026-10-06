@@ -16,6 +16,12 @@ const logoutButton = document.querySelector("#logout-button");
 // just asked to trust. getToken()/clearSession() come from auth.js.
 const threadId = "default";
 
+// Show who is signed in (email saved by setSession() at login).
+const signedInEmail = getEmail() || "";
+document.querySelector("#user-email").textContent = signedInEmail;
+document.querySelector("#user-avatar").textContent = (signedInEmail[0] || "?").toUpperCase();
+if (!signedInEmail) document.querySelector(".user-chip").hidden = true;
+
 logoutButton.addEventListener("click", () => {
   clearSession();
   window.location.replace("login.html");
